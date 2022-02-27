@@ -39,14 +39,19 @@ return inquirer.prompt([
         }
     },
     {
+        type: "confirm",
+        name: "confirmAbout",
+        message: "Would you like to enter some information about yourself for and 'About' section?",
+        default: true
+    },
+    {
         type: "input",
         name: "about",
         message: "Provide some information about yourself: (Required)",
-        validate: about => {
-            if (about) {
+        when: ({ confirmAbout }) => {
+            if (confirmAbout) {
                 return true;
             } else {
-                console.log("Please tell us about yourself!");
                 return false;
             }
         }
